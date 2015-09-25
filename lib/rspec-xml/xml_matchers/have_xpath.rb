@@ -1,6 +1,8 @@
 module RSpecXML
   module XMLMatchers
     class HaveXPath
+      include RSpec::Matchers::Composable
+
       def initialize(xpath, example_group)
         self.matcher = Matcher.new(
           :xpath => xpath,
