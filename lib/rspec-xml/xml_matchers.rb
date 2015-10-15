@@ -2,6 +2,7 @@ root =  File.dirname(__FILE__)
 require "#{root}/xml_matchers/have_xpath/matcher"
 require "#{root}/xml_matchers/have_xpath/text_matcher"
 require "#{root}/xml_matchers/have_xpath/attr_matcher"
+require "#{root}/xml_matchers/have_xpath/cdata_matcher"
 require "#{root}/xml_matchers/have_xpath"
 
 module RSpecXML
@@ -15,7 +16,7 @@ module RSpecXML
       return unless block_given?
 
       instance_exec(example_group_block) do
-        @xpath_stack ||= [] 
+        @xpath_stack ||= []
         @xpath_stack.push xpath
         yield
         @xpath_stack.pop

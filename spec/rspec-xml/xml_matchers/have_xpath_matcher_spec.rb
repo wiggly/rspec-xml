@@ -53,6 +53,20 @@ describe RSpecXML::XMLMatchers::HaveXPath do
     end
   end
 
+  describe '#with_cdata?' do
+    it 'should build a new cdata matcher containing supplied xpath' do
+
+      RSpecXML::XMLMatchers::HaveXPath::CdataMatcher.
+        expects(:new).
+        with(:xpath => 'fake xpath').
+        returns(:flag)
+
+      xpath_matcher = Factory.xpath_matcher('fake xpath').with_cdata?
+      expect(xpath_matcher.send(:matcher)).to eq :flag
+
+    end
+  end
+
   describe '#failure_message' do
     it 'should delegate to the matcher' do
       xpath_matcher = Factory.xpath_matcher('whatever')
