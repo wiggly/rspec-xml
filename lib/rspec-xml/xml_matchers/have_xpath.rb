@@ -26,6 +26,14 @@ module RSpecXML
         self
       end
 
+      def with_cdata?
+        self.matcher = CdataMatcher.new(
+          :xpath => matcher.full_xpath
+        )
+
+        self
+      end
+
       def matches?(xml)
         matcher.matches?(xml)
       end
